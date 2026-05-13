@@ -28,7 +28,7 @@
   <p class="note">
     <strong>Installed PinPix but still see an error?</strong><br />
     Shared spots only open in a <strong>development build</strong> or <strong>App Store / TestFlight</strong> install.
-    <strong>Expo Go</strong> does not register the <code>pinpix://</code> link — use a dev build from EAS or your release build.
+    <strong>Expo Go</strong> does not register PinPix links — use an EAS development build or a store build.
   </p>
 
   <script>
@@ -49,10 +49,11 @@
       }
       id = id.trim();
 
-      var deep = 'pinpix://spot/' + encodeURIComponent(id);
+      // Three slashes so "spot" is a path segment, not a hostname (matches app + expo-router).
+      var deep = 'pinpix:///spot/' + encodeURIComponent(id);
       var pkg = 'com.pinpix.android';
       var intent =
-        'intent://spot/' + encodeURIComponent(id) +
+        'intent:///spot/' + encodeURIComponent(id) +
         '#Intent;scheme=pinpix;package=' + pkg + ';end';
 
       var ua = navigator.userAgent || '';
